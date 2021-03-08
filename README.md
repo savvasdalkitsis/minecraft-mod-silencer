@@ -1,6 +1,6 @@
-# Silencer Minecraft mod
+# Silencer Minecraft mod (Forge)
 
-A mod that provides an item that allows you to silence entities:
+A Forge mod that provides an item that allows you to silence entities:
 
 ![You can silence villagers for example](assets/use.png)
 
