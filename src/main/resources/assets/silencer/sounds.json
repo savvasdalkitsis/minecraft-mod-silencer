@@ -1,0 +1,6 @@
+{
+  "shh": {
+    "category": "player",
+    "sounds": [ "silencer:shh" ]
+  }
+}

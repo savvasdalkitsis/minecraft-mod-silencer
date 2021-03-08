@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "hc ",
+    "cr ",
+    "  c"
+  ],
+  "key": {
+    "h": {
+      "item": "minecraft:honey_block"
+    },
+    "c": {
+      "item": "minecraft:clay_ball"
+    },
+    "r": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "silencer:silencer",
+    "count": 1
+  }
+}
