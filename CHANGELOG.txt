@@ -1,0 +1,8 @@
+v1.1.0
+
+- Adding unsilencer.
+- Making image assets smaller by using TinyPNG which makes the mod package smaller
+
+v1.0.0
+- Initial release
+- Adding silencer

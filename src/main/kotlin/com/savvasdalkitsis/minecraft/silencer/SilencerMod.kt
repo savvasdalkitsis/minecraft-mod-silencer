@@ -17,27 +17,35 @@ private const val MOD_ID = "silencer"
 @Mod(MOD_ID)
 class SilencerMod {
     private val shh = SoundEvent(ResourceLocation(MOD_ID, "shh"))
+    private val whoo = SoundEvent(ResourceLocation(MOD_ID, "whoo"))
 
     init {
         MinecraftForge.EVENT_BUS.register(this)
         with (DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)) {
             register("silencer") { SilencerItem() }
+            register("unsilencer") { UnsilencerItem() }
             register(KotlinModLoadingContext.get().getKEventBus())
         }
         with (DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MOD_ID)) {
             register("shh") { shh }
+            register("whoo") { whoo }
             register(KotlinModLoadingContext.get().getKEventBus())
         }
     }
 
     @SubscribeEvent
     fun entityInteract(e: PlayerInteractEvent.EntityInteractSpecific) {
-        if (!e.target.isSilent && e.itemStack.item is SilencerItem) {
-            e.target.isSilent = true
-            e.itemStack.shrink(1)
-            e.cancellationResult = ActionResultType.SUCCESS
-            e.isCanceled = true
-            e.player.playSound(shh, 1f, 1f)
+        when {
+            !e.target.isSilent && e.itemStack.item is SilencerItem -> e.use(true, shh)
+            e.target.isSilent && e.itemStack.item is UnsilencerItem -> e.use(false, whoo)
         }
+    }
+
+    private fun PlayerInteractEvent.EntityInteractSpecific.use(silent: Boolean, soundEvent: SoundEvent) {
+        target.isSilent = silent
+        itemStack.shrink(1)
+        cancellationResult = ActionResultType.SUCCESS
+        isCanceled = true
+        player.playSound(soundEvent, 1f, 1f)
     }
 }

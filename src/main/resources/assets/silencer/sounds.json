@@ -2,5 +2,9 @@
   "shh": {
     "category": "player",
     "sounds": [ "silencer:shh" ]
+  },
+  "whoo": {
+    "category": "player",
+    "sounds": [ "silencer:whoo" ]
   }
 }
